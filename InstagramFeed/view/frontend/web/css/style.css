@@ -1,0 +1,49 @@
+/* slider css */
+
+.slick-slider {
+    margin-bottom: 50px;
+}
+
+.slick-slide>div {
+    margin: 0 10px;
+}
+
+.slick-list {
+    margin: 0 -10px;
+}
+
+
+/* grid css */
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    /* padding: 10px; */
+    gap: 15px;
+    margin-bottom: 50px;
+}
+
+.grid-item {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+    border-radius: 5px;
+    padding: 18px 18px 12px 18px;
+    text-align: center;
+}
+
+.instagram-feed {
+    transition: transform .5s;
+    border-radius: 5px;
+}
+
+.instagram-feed:hover {
+    transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -webkit-transform: scale(1.1);
+}
+
+.instagram-feed-title{
+    text-align: center;
+    font-size: xxx-large;
+    margin-bottom: 10px;
+    text-decoration: underline;
+}

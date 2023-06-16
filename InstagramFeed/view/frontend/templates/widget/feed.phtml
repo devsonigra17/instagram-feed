@@ -1,0 +1,86 @@
+<?php
+    $css = $block->getAssetUrl('Dev_InstagramFeed::css/style.css');
+    $js = $block->getAssetUrl('Dev_InstagramFeed::js/script.js');
+    if($css)
+    {
+        echo "<link href='$css' rel='stylesheet' type='text/css' media='all' />";
+    }
+    if($js)
+    {
+        echo "<script src='$js'></script>";
+    }
+    ?>
+<?php
+    $slider = '';
+    $grid = '';
+    
+    if($block->isEnable())
+    {
+        // die("=====");
+        if($block->getLayout()==1)
+        {
+            $slider = true;
+        }
+        if($block->getLayout()==2)
+        {
+            $grid = true;
+        }
+    }
+?>
+
+<?php
+    if($slider)
+    {
+        $feed_url = $block->getFeedUrl();
+        $content = file_get_contents($feed_url);
+        $data = json_decode($content);
+        
+        $slider_data = $data->data;
+        
+        $image_data = [];
+        foreach ($slider_data as $value) {
+            $image_data[] = $value->media_url;
+        }
+        ?>
+        <div class="instagram-feed-title"><?php echo $block->getTitle(); ?></div>
+        <div class="slick-slider">
+            <?php
+                foreach($image_data as $image_url)
+                {
+                    ?>
+                    <div class="item-slider"><img src="<?php echo $image_url; ?>" alt="No Image"></div>
+            <?php
+                }
+                ?>
+        </div>
+        <?php
+    }
+    
+    
+    if($grid)
+    {    
+        $feed_url = $block->getFeedUrl();
+        $content = file_get_contents($feed_url);
+        $data = json_decode($content);
+        
+        $grid_data = $data->data;
+        
+        $image_data = [];
+        foreach ($grid_data as $value) {
+            $image_data[] = $value->media_url;
+        }       
+        ?>
+        <div class="instagram-feed-title"><?php echo $block->getTitle(); ?></div>
+        <div class="grid-container">
+            <?php    
+            foreach($image_data as $image_url)
+            {
+                ?>
+                <div class="grid-item"><img class="instagram-feed" src="<?php echo $image_url; ?>" alt="No Image"></div>
+                <?php
+            }
+            ?>
+        </div>
+        <?php
+    }
+?>
